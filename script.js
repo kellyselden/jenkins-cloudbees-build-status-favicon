@@ -4,6 +4,8 @@
 // @description Monitor builds using tab icons
 // @version     1
 // @author      Kelly Selden
+// supportURL   https://github.com/kellyselden/jenkins-build-status-favicon
+// installURL   https://raw.githubusercontent.com/kellyselden/jenkins-build-status-favicon/main/script.js
 // @license     MIT
 // @match       http*://*jenkins*/*
 // ==/UserScript==
