@@ -29,24 +29,27 @@
   function updateFavicon() {
     let statusText;
 
-    let status = document.querySelector('.ResultPageHeader-indicator title');
+    let status = document.body.querySelector('.ResultPageHeader-indicator title');
 
     if (status) {
       statusText = status.textContent;
     } else {
-      let statuses = document.body.querySelectorAll('.build-status-icon__outer > .svg-icon');
+      status = document.body.querySelector('.build-status-link');
 
-      for (let _status of statuses) {
-        let tooltip = _status.getAttribute('tooltip');
-
-        if (tooltip) {
-          statusText = tooltip.match(/(.*?)(?: &gt;|$)/)[1];
-
-          statusText = classicToBlueOcean[statusText];
-
-          break;
-        }
+      if (!status) {
+        status = document.body.querySelector('.build-status-icon__outer > .svg-icon');
       }
+
+      if (!status) {
+        // Blue Ocean isn't loaded yet.
+        return;
+      }
+
+      let tooltip = status.getAttribute('tooltip');
+
+      statusText = tooltip.match(/(?<statusText>.*?)(?: >|$)/).groups.statusText;
+
+      statusText = classicToBlueOcean[statusText];
     }
 
     let favicon = document.head.querySelector('link[rel="shortcut icon"]');
