@@ -27,29 +27,33 @@
   };
 
   function updateFavicon() {
-    let statusText;
+    let statusText = document.getElementsByTagName('cloudbees-log-viewer-main')[0]?.build?.status?.label;
 
-    let status = document.body.querySelector('.ResultPageHeader-indicator title');
-
-    if (status) {
-      statusText = status.textContent;
-    } else {
-      status = document.body.querySelector('.build-status-link');
-
-      if (!status) {
-        status = document.body.querySelector('.build-status-icon__outer > .svg-icon');
-      }
-
-      if (!status) {
-        // Blue Ocean isn't loaded yet.
-        return;
-      }
-
-      let tooltip = status.getAttribute('tooltip');
-
-      statusText = tooltip.match(/(?<statusText>.*?)(?: >|$)/).groups.statusText;
-
+    if (statusText) {
       statusText = classicToBlueOcean[statusText];
+    } else {
+      let status = document.body.querySelector('.ResultPageHeader-indicator title');
+  
+      if (status) {
+        statusText = status.textContent;
+      } else {
+        status = document.body.querySelector('.build-status-link');
+  
+        if (!status) {
+          status = document.body.querySelector('.build-status-icon__outer > .svg-icon');
+        }
+  
+        if (!status) {
+          // Blue Ocean isn't loaded yet.
+          return;
+        }
+  
+        let tooltip = status.getAttribute('tooltip');
+  
+        statusText = tooltip.match(/(?<statusText>.*?)(?: >|$)/).groups.statusText;
+  
+        statusText = classicToBlueOcean[statusText];
+      }
     }
 
     let favicon = document.head.querySelector('link[rel="shortcut icon"]');
