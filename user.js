@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name        Jenkins Build Status Favicon
+// @name        Jenkins CloudBees Build Status Favicon
 // @namespace   https://github.com/kellyselden
 // @version     1
 // @description Monitor builds using tab icons
