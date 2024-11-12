@@ -20,13 +20,7 @@
   };
 
   function updateFavicon() {
-    let statusText;
-
-    let status = document.querySelector('.jenkins-build-caption svg');
-
-    if (status) {
-      statusText = status.getAttribute('tooltip');
-    }
+    let statusText = document.getElementsByTagName('cloudbees-log-viewer-main')[0]?.build?.status?.label;
 
     let favicon = document.head.querySelector('link[rel="shortcut icon"]');
 
