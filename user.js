@@ -3,58 +3,29 @@
 // @namespace   https://github.com/kellyselden
 // @version     2
 // @description Monitor builds using tab icons
-// updateURL    https://raw.githubusercontent.com/kellyselden/jenkins-build-status-favicon/main/meta.js
-// downloadURL  https://raw.githubusercontent.com/kellyselden/jenkins-build-status-favicon/main/user.js
+// @updateURL   https://raw.githubusercontent.com/kellyselden/jenkins-build-status-favicon/main/meta.js
+// @downloadURL https://raw.githubusercontent.com/kellyselden/jenkins-build-status-favicon/main/user.js
 // @author      Kelly Selden
 // @license     MIT
-// supportURL   https://github.com/kellyselden/jenkins-build-status-favicon
+// @supportURL  https://github.com/kellyselden/jenkins-build-status-favicon
 // @match       http*://*jenkins*/*
 // ==/UserScript==
 
 (() => {
   const icons = {
-    running: '🔵',
-    success: '🟢',
-    failure: '🔴',
-    aborted: '⚪️',
-    queued: '⚪️',
-  };
-
-  const classicToBlueOcean = {
-    'In progress': 'running',
-    'Success': 'success',
-    'Failed': 'failure',
-    'Aborted': 'aborted',
+    'In progress': '🔵',
+    'Success': '🟢',
+    'Failed': '🔴',
+    'Aborted': '⚪️',
   };
 
   function updateFavicon() {
-    let statusText = document.getElementsByTagName('cloudbees-log-viewer-main')[0]?.build?.status?.label;
+    let statusText;
 
-    if (statusText) {
-      statusText = classicToBlueOcean[statusText];
-    } else {
-      let status = document.body.querySelector('.ResultPageHeader-indicator title');
-  
-      if (status) {
-        statusText = status.textContent;
-      } else {
-        status = document.body.querySelector('.build-status-link');
-  
-        if (!status) {
-          status = document.body.querySelector('.build-status-icon__outer > .svg-icon');
-        }
-  
-        if (!status) {
-          // Blue Ocean isn't loaded yet.
-          return;
-        }
-  
-        let tooltip = status.getAttribute('tooltip');
-  
-        statusText = tooltip.match(/(?<statusText>.*?)(?: >|$)/).groups.statusText;
-  
-        statusText = classicToBlueOcean[statusText];
-      }
+    let status = document.querySelector('.jenkins-build-caption svg');
+
+    if (status) {
+      statusText = status.getAttribute('tooltip');
     }
 
     let favicon = document.head.querySelector('link[rel="shortcut icon"]');
