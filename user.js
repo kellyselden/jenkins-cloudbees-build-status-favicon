@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Jenkins CloudBees Build Status Favicon
 // @namespace    https://github.com/kellyselden
-// @version      3
+// @version      4
 // @description  Monitor builds using tab icons
 // @updateURL    https://raw.githubusercontent.com/kellyselden/jenkins-cloudbees-build-status-favicon/main/meta.js
 // @downloadURL  https://raw.githubusercontent.com/kellyselden/jenkins-cloudbees-build-status-favicon/main/user.js
@@ -14,10 +14,11 @@
 'use strict';
 
 const icons = {
-  'In progress': '🔵',
-  'Success': '🟢',
-  'Failed': '🔴',
-  'Aborted': '⚪️',
+  'in progress': '🔵',
+  'success': '🟢',
+  'failed': '🔴',
+  'unstable': '⚪️',
+  'aborted': '⚪️',
 };
 
 const statusIconClass = 'cloudbees-log-viewer-badge';
@@ -35,7 +36,7 @@ function replaceFavicon(favicon) {
 function updateFavicon(status) {
   let favicon = getFavicon();
 
-  let statusText = document.querySelector('cloudbees-log-viewer-main')?.build?.status?.label;
+  let statusText = status.getAttribute('data-value');
 
   if (!statusText) {
     replaceFavicon(favicon);
