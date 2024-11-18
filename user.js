@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Jenkins CloudBees Build Status Favicon
 // @namespace    https://github.com/kellyselden
-// @version      5
+// @version      6
 // @description  Monitor builds using tab icons
 // @updateURL    https://raw.githubusercontent.com/kellyselden/jenkins-cloudbees-build-status-favicon/main/meta.js
 // @downloadURL  https://raw.githubusercontent.com/kellyselden/jenkins-cloudbees-build-status-favicon/main/user.js
@@ -16,7 +16,7 @@
 const icons = {
   'in_progress': '🔵',
   'success': '🟢',
-  'failed': '🔴',
+  'failure': '🔴',
   'unstable': '⚪️',
   'aborted': '⚪️',
 };
