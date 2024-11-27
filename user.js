@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Jenkins CloudBees Build Status Favicon
 // @namespace    https://github.com/kellyselden
-// @version      6
+// @version      7
 // @description  Monitor builds using tab icons
 // @updateURL    https://raw.githubusercontent.com/kellyselden/jenkins-cloudbees-build-status-favicon/main/meta.js
 // @downloadURL  https://raw.githubusercontent.com/kellyselden/jenkins-cloudbees-build-status-favicon/main/user.js
@@ -9,7 +9,7 @@
 // @license      MIT
 // @source       https://github.com/kellyselden/jenkins-cloudbees-build-status-favicon
 // @supportURL   https://github.com/kellyselden/jenkins-cloudbees-build-status-favicon/issues/new
-// @match        http*://*jenkins*/job/*/cloudbees-pipeline-explorer/*
+// @include      http*://*jenkins*/job/*/cloudbees-pipeline-explorer/*
 // ==/UserScript==
 'use strict';
 
